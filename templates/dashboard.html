@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %} 
+
+
+{% block content %}
+
+    <div class="container"> <!-- Creates a container for our content, providing some structure -->
+        <div class="img-container">
+            <h1>Office Employee Management System!</h1> <!-- Main heading for the page -->
+            <img src="{% static 'images/emp_desk4.jpg' %}"  alt="an image">
+
+        </div>
+        <hr> <!-- Horizontal rule for visual separation -->
+        <div class="buttons">
+            <!-- Links to different sections of the app. Using Bootstrap buttons for styling. -->
+            <a class="btn btn-primary" href="/all_emp" role="button">View All Employee</a>
+            <a class="btn btn-primary" href="/add_emp" role="button">Add An Employee</a>
+            <a class="btn btn-primary" href="/remove_emp" role="button">Remove An Employee</a>
+            <a class="btn btn-primary" href="/filter_emp" role="button">Filter An Employee</a>
+            <a class="btn btn-primary" href="/create_department" role="button">Create Department</a>
+            <a class="btn btn-primary" href="/create_role" role="button">Create Role</a>
+        </div>
+    </div>
+
+
+
+{% endblock %}

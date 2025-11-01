@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %} 
+
+
+{% block content %}
+    <div class="container"> <!-- Creates a container for our content, providing some structure -->
+        <div>
+        {% if user.is_authenticated %}
+        <h4 class="navbar-text">Hi, {{ user.username }}!</h4>
+        {% endif %}
+                 
+        <div class="img-container">
+            <h1>Office Employee Management System!</h1> <!-- Main heading for the page -->
+            <img src="{% static 'images/emp_desk4.jpg' %}"  alt="an image">
+            <!-- {% if user.is_authenticated %}
+            <a class="btn btn-primary" href="/dashboard/" class="navbar-brand" role="button">Dashboard</a>
+            {% endif %} -->
+            
+
+        </div>
+        </div>
+        <!-- Horizontal rule for visual separation -->
+        <!-- <div class="buttons">
+            Links to different sections of the app. Using Bootstrap buttons for styling.
+            <a class="btn btn-primary" href="/all_emp" role="button">View All Employee</a>
+            <a class="btn btn-primary" href="/add_emp" role="button">Add An Employee</a>
+            <a class="btn btn-primary" href="/remove_emp" role="button">Remove An Employee</a>
+            <a class="btn btn-primary" href="/filter_emp" role="button">Filter An Employee</a>
+            <a class btn btn-primary href="/accounts/login/" role="button">Login</a>
+            <a class btn btn-primary href="/signup/" role="button">Register</a>
+
+            <a class btn btn-primary href="/accounts/logout/" role="button">Logout</a>
+            <a class btn btn-primary href="accounts/password_change/" role="button">Change Password</a>
+            
+        </div> -->
+    </div>
+    <hr>
+{% endblock %}
+
+
+

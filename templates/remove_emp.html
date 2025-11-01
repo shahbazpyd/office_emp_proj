@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container">
+    <div>
+        <h1>Remove An Employee!</h1> <!-- Heading for this specific section -->
+        <hr> <!-- Another horizontal line -->
+
+        <!-- Dropdown menu for selecting an employee to remove -->
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Choose Employee To Be Removed
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <!-- Loops through the 'emps' variable (passed from Django view) containing employee data -->
+                {% for emp in emps %}
+                <!-- Creates a dropdown item for each employee -->
+                <li><a class="dropdown-item" href="/remove_emp/{{ emp.id }}">
+                        {{ emp.first_name }} {{emp.last_name}}</a></li>
+                {% endfor %} <!-- End of the employee loop -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %} 
+
+
+{% block content %}
+
+    <div class="container">
+        <div>
+        <h1>Filter Employee Details!</h1> <!-- Heading for this specific section -->
+        <hr> <!-- Another horizontal line -->
+
+        <!-- Form for filtering employees based on name, department, or role -->
+        <form action="/filter_emp" method="post">
+            <!-- Django template tag to prevent Cross-Site Request Forgery attacks -->
+            {% csrf_token %}
+
+            <!-- Input field for employee's first or last name -->
+            <label for="name">Employee First/Last Name</label><br>
+            <input type="text" id="name" name="name" value="{{ name }}"><br>
+
+            <!-- Input field for department -->
+            <label for="dept">Department</label><br>
+            <input type="text" id="dept" name="dept" value="{{ dept }}"><br>
+
+
+            <!-- Input field for role -->
+            <label for="role">Role</label><br>
+            <input type="text" id="role" name="role" value="{{ role }}"><br>
+
+            <hr> <!-- Another horizontal line -->
+
+            <!-- Submit button to apply the filters -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+    </div>
+{% endblock content %}
