@@ -132,7 +132,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Use WhiteNoise's storage backend in production
 if not DEBUG:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.ManifestStaticFilesStorage'
 
 
 # Default primary key field type
