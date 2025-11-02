@@ -7,11 +7,16 @@
       "config": {
         "runtime": "python3.9",
         "installCommand": "pip install -r requirements.txt", 
-        "buildCommand": "python manage.py migrate --noinput && python manage.py collectstatic --noinput --clear"
+        "buildCommand": "python manage.py collectstatic --noinput --clear"
       }
     }
   ],
   "routes": [
     { "src": "/(.*)", "dest": "office_emp_proj/wsgi.py" }
-  ]
+  ],
+  "build": {
+    "env": {
+      "VERCEL_BUILD_STEP_RELEASE_SCRIPT_PATH": "vercel-release.sh"
+    }
+  }
 }
