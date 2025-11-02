@@ -1,17 +1,9 @@
-# In build.sh (Updated)
+# In build.sh (Alternative - Try this if the first one doesn't work)
 #!/bin/bash
 
-# Vercel's Python path is needed explicitly in the build step
-PYTHON_EXEC="$PYTHONUSERBASE/bin/python"
+# 1. Install dependencies (ensure they are installed in a location the shell can find)
+pip install -r requirements.txt
 
-# 1. Install dependencies
-# Use the Python executable's pip
-$PYTHON_EXEC -m pip install -r requirements.txt
-
-# 2. Run database migrations
-$PYTHON_EXEC manage.py migrate --noinput
-
-# 3. Collect static files
-$PYTHON_EXEC manage.py collectstatic --noinput --clear
-
-echo "Build finished. Static files collected."
+# 2. Use the shell's python
+python manage.py migrate --noinput
+python manage.py collectstatic --noinput --clear
