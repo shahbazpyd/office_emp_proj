@@ -1,16 +1,16 @@
-"""
-WSGI config for office_emp_proj project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
-"""
+# In office_emp_proj/wsgi.py
 
 import os
-
 from django.core.wsgi import get_wsgi_application
+from whitenoise import WhiteNoise # 💡 NEW: Import WhiteNoise
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'office_emp_proj.settings')
 
-app = get_wsgi_application()
+application = get_wsgi_application()
+
+# 💡 NEW: Wrap the application with WhiteNoise
+# This tells WhiteNoise where the collected files are (STATIC_ROOT)
+application = WhiteNoise(application) 
+
+# This variable is what Vercel looks for
+app = application
