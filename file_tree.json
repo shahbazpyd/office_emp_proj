@@ -1,0 +1,83 @@
+{
+  "root": "office_emp_proj",
+  "files": [
+    "manage.py",
+    "requirements.txt",
+    "vercel.json"
+  ],
+  "directories": {
+    "emp_app": {
+      "files": [
+        "__init__.py",
+        "admin.py",
+        "apps.py",
+        "models.py",
+        "tests.py",
+        "urls.py",
+        "views.py"
+      ],
+      "directories": {
+        "__pycache__": {},
+        "migrations": {
+          "files": [
+            "__init__.py",
+            "0001_initial.py",
+            "0002_alter_employee_phone.py"
+          ],
+          "directories": {
+            "__pycache__": {}
+          }
+        }
+      }
+    },
+    "office_emp_proj": {
+      "files": [
+        "__init__.py",
+        "asgi.py",
+        "form_tags.py",
+        "settings.py",
+        "urls.py",
+        "wsgi.py"
+      ],
+      "directories": {
+        "__pycache__": {}
+      }
+    },
+    "static": {
+      "directories": {
+        "CSS": {
+          "files": ["style.css"]
+        },
+        "images": {
+          "files": [
+            "emp_desk1.jpg",
+            "emp_desk2.jpg",
+            "emp_desk3.jpg",
+            "emp_desk4.jpg"
+          ]
+        }
+      }
+    },
+    "templates": {
+      "files": [
+        "add_emp.html",
+        "base.html",
+        "create_department.html",
+        "create_role.html",
+        "dashboard.html",
+        "filter_emp.html",
+        "index.html",
+        "remove_emp.html",
+        "view_all_emp.html"
+      ],
+      "directories": {
+        "registration": {
+          "files": [
+            "login.html",
+            "signup.html"
+          ]
+        }
+      }
+    }
+  }
+}
