@@ -2,15 +2,16 @@
 
 import os
 from django.core.wsgi import get_wsgi_application
-from whitenoise import WhiteNoise # 💡 NEW: Import WhiteNoise
+from whitenoise import WhiteNoise 
+from django.conf import settings # 💡 NEW: Import settings
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'office_emp_proj.settings')
 
 application = get_wsgi_application()
 
-# 💡 NEW: Wrap the application with WhiteNoise
-# This tells WhiteNoise where the collected files are (STATIC_ROOT)
-application = WhiteNoise(application) 
+# 💡 FIX: Wrap with WhiteNoise, explicitly setting the root to STATIC_ROOT
+# WhiteNoise will now look exactly where collectstatic put the files.
+application = WhiteNoise(application, root=settings.STATIC_ROOT)
 
-# This variable is what Vercel looks for
+# Vercel needs this 'app' variable
 app = application
