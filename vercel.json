@@ -1,22 +1,12 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "office_emp_proj/wsgi.py",
       "use": "@vercel/python",
       "config": {
-        "runtime": "python3.9",
-        "installCommand": "pip install -r requirements.txt", 
-        "buildCommand": "python manage.py collectstatic --noinput --clear"
+        "command": "bash vercel-release.sh && python manage.py collectstatic --noinput",
+        "runtime": "python3.12"
       }
     }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "office_emp_proj/wsgi.py" }
-  ],
-  "build": {
-    "env": {
-      "VERCEL_BUILD_STEP_RELEASE_SCRIPT_PATH": "vercel-release.sh"
-    }
-  }
+  ]
 }
