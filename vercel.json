@@ -1,18 +1,23 @@
 {
   "builds": [
     {
+      "src": "vercel-release.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "zeroConfig": true
+      }
+    },
+    {
       "src": "office_emp_proj/wsgi.py",
       "use": "@vercel/python",
       "config": {
-        "command": "bash vercel-release.sh && python manage.py collectstatic --noinput",
-        "runtime": "python3.12"
+        "runtime": "python3.12",
+        "maxLambdaSize": "15mb"
       }
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "office_emp_proj/wsgi.py"
-    }
+    { "src": "/static/(.*)", "dest": "/static/$1" },
+    { "src": "/(.*)", "dest": "office_emp_proj/wsgi.py" }
   ]
 }
