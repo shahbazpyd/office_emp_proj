@@ -8,5 +8,11 @@
         "runtime": "python3.12"
       }
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "office_emp_proj/wsgi.py"
+    }
   ]
 }
