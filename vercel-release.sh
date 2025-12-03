@@ -1,4 +1,8 @@
 #!/bin/bash
-echo "migration is happening"
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+echo "Starting database migration..."
 python manage.py migrate
-echo "migrations is done"
+echo "Database migration completed successfully."
