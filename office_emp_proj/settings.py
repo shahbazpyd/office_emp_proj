@@ -82,7 +82,11 @@ WSGI_APPLICATION = 'office_emp_proj.wsgi.application'
 
 if os.environ.get('DATABASE_URL'):
     DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600, ssl_require=not DEBUG)
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            ssl_require=not DEBUG, # Require SSL in production (when DEBUG=False)
+            engine='django.db.backends.postgresql' # Ensure psycopg is used
+        )
     }
 else:
     DATABASES = {
