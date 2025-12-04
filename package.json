@@ -1,3 +1,6 @@
 {
-  "private": true
+  "private": true,
+  "scripts": {
+    "vercel-build": "pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput"
+  }
 }
