@@ -135,8 +135,8 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# Use WhiteNoise's storage backend in production
-if not DEBUG:
+# Use WhiteNoise's storage backend in production, but not on Vercel
+if not DEBUG and os.environ.get('VERCEL_ENV') != 'production':
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
