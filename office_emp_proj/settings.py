@@ -56,6 +56,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# On Vercel, static files are served by Vercel's CDN, so WhiteNoise is not needed at runtime.
+# This check removes the middleware and prevents a benign warning.
+if os.environ.get('VERCEL_ENV') == 'production':
+    MIDDLEWARE.remove('whitenoise.middleware.WhiteNoiseMiddleware')
+
 ROOT_URLCONF = 'office_emp_proj.urls'
 
 TEMPLATES = [
