@@ -31,4 +31,6 @@ urlpatterns = [
     # path('dashboard/', views.dashboard, name='dashboard'),
     path('create_department/', views.create_department, name='create_department'),
     path('create_role/', views.create_role, name='create_role'),
+    path('export_csv/', views.export_emp_csv, name='export_csv'),
+    path('search_emp_ajax/', views.search_emp_ajax, name='search_emp_ajax'),
 ]
