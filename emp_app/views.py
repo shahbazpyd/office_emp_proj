@@ -2,10 +2,10 @@ import csv
 from datetime import datetime
 
 from django.db.models import Q, Count, Sum
-from django.shortcuts import render, HttpResponse, redirect
 from django.http import JsonResponse
 from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import Group
 from django.contrib import messages
 from .models import Employee, Department, Role
 from .forms import EmployeeForm
@@ -14,6 +14,9 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 # Create your views here.
+def is_hr_admin(user):
+    return user.is_authenticated and (user.is_superuser or user.groups.filter(name='HR Admin').exists())
+
 def index(request):
     if request.user.is_authenticated:
         total_emps = Employee.objects.count()
@@ -97,6 +100,7 @@ def export_emp_csv(request):
     return response
 
 @login_required
+@user_passes_test(is_hr_admin)
 def add_emp(request):
     if request.method == "POST":
         form = EmployeeForm(request.POST)
@@ -114,6 +118,7 @@ def add_emp(request):
     return render(request, 'add_emp.html', {'form': form})
 
 @login_required
+@user_passes_test(is_hr_admin)
 def remove_emp(request, emp_id=0):
     if emp_id:
         try:
@@ -157,7 +162,14 @@ class SignUpView(generic.CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        employee_group, created = Group.objects.get_or_create(name='Employee')
+        self.object.groups.add(employee_group)
+        return response
+
 @login_required
+@user_passes_test(is_hr_admin)
 def create_department(request):
     if request.method == "POST":
         name = request.POST['name']
@@ -175,6 +187,7 @@ def create_department(request):
         return HttpResponse("Something Went Wrong!")
 
 @login_required
+@user_passes_test(is_hr_admin)
 def create_role(request):
     if request.method == "POST":
         name = request.POST['name']

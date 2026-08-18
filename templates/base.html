@@ -1,4 +1,5 @@
-{% load static %} 
+{% load static %}
+{% load auth_extras %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,13 +37,14 @@
                     <a href="/all_emp"><i class="fa-solid fa-users"></i> All Employees</a>
                 </li>
                 <li>
+                    <a href="/filter_emp"><i class="fa-solid fa-filter"></i> Filter Employees</a>
+                </li>
+                {% if request.user|has_group:"HR Admin" %}
+                <li>
                     <a href="/add_emp"><i class="fa-solid fa-user-plus"></i> Add Employee</a>
                 </li>
                 <li>
                     <a href="/remove_emp"><i class="fa-solid fa-user-minus"></i> Remove Employee</a>
-                </li>
-                <li>
-                    <a href="/filter_emp"><i class="fa-solid fa-filter"></i> Filter Employees</a>
                 </li>
                 <hr style="border-top: 1px solid var(--border-color); margin: 15px 20px; opacity: 1;">
                 <li>
@@ -51,6 +53,7 @@
                 <li>
                     <a href="/create_role"><i class="fa-solid fa-briefcase"></i> Roles</a>
                 </li>
+                {% endif %}
                 {% else %}
                 <li>
                     <a href="/"><i class="fa-solid fa-house"></i> Home</a>

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %} 
+{% load auth_extras %}
 
 {% block content %}
 <div class="container-fluid">
@@ -8,10 +9,12 @@
             <h2 class="mb-1">All Employees</h2>
             <p class="text-muted mb-0">Browse the entire company directory</p>
         </div>
+        {% if request.user|has_group:"HR Admin" %}
         <div>
             <a href="/export_csv" class="btn btn-outline-success me-2"><i class="fa-solid fa-file-csv"></i> Export CSV</a>
             <a href="/add_emp" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add New</a>
         </div>
+        {% endif %}
     </div>
 
     <!-- Live Search Input -->
