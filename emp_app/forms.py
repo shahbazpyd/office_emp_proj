@@ -2,6 +2,18 @@ from django import forms
 from .models import Employee
 
 class EmployeeForm(forms.ModelForm):
+    def clean_phone(self):
+        phone = self.cleaned_data.get('phone')
+        if phone and len(str(phone)) != 10:
+            raise forms.ValidationError("Phone number must be exactly 10 digits.")
+        return phone
+
+    def clean_salary(self):
+        salary = self.cleaned_data.get('salary')
+        if salary and salary < 0:
+            raise forms.ValidationError("Salary cannot be negative.")
+        return salary
+
     class Meta:
         model = Employee
         # We exclude hire_date since it's automatically set to datetime.now() in our view
